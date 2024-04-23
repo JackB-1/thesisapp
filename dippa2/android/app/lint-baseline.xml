@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.3.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.3.0)" variant="all" version="8.3.0">
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="  se.commit();"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/SettingsPage.java"
+            line="136"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="     hrTextView.setText(String.format(&quot;HR %03d&quot;,(int) Math.round(hr)));"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="332"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="     initBuilder.setContentText(String.format(&quot;HR %03d&quot;,(int) Math.round(hr)));"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="225"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="  handlerThread = new HandlerThread(String.format(&quot;Handler%02d&quot;,accView));"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="159"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="     String toastText = String.format(&quot;bat %d mV&quot;,energyData.content.mV);"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="806"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        message="Field requires API level 29 (current min is 21): `android.Manifest.permission#ACCESS_BACKGROUND_LOCATION`"
+        errorLine1="   permsReq.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="187"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="SimpleDateFormat"
+        message="To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates."
+        errorLine1="   date = new SimpleDateFormat(&quot;yyyy-MM-dd_HHmmss&quot;).format(new Date());"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="318"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="  this.uri = uri;"
+        errorLine2="~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/ECGData.java"
+            line="23"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/ECGData.java"
+            line="22"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   this.timestamp = timestamp;"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/ECGData.java"
+            line="38"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/ECGData.java"
+            line="37"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="  this.uri = uri;"
+        errorLine2="~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/HRData.java"
+            line="23"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/HRData.java"
+            line="22"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   this.rrData = rrData;"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/HRData.java"
+            line="36"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/HRData.java"
+            line="35"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="  this.uri = uri;"
+        errorLine2="~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/IMUData.java"
+            line="23"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/IMUData.java"
+            line="22"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   this.gyrArray = gyrArray;"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/IMUData.java"
+            line="46"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/data/IMUData.java"
+            line="45"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="    ecgSRText =(TextView)findViewById(R.id.ecgSRTextView);"
+        errorLine2="~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="163"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="161"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   hrToggle = sp.getString(Constants.hrToggle,&quot;OFF&quot;);"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="363"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="362"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="    intentFilter.addAction(Constants.SCAN);"
+        errorLine2="~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="126"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="125"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="        stopSelf(); //Call this to stop the service"
+        errorLine2=" ~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="152"
+            column="2"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="151"
+            column="2"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="       startForeground(Constants.fgServiceInt, initBuilder.build());  //Does nothing if already running"
+        errorLine2="~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="163"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="157"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   sensorRunnable.subscribeToIMU(serial);"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="362"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="361"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="  mdsSubscriptionMap.put(connectedSerial,mMds.builder().responseHandler(handler).build(context).subscribe(URI_EVENTLISTENER,"
+        errorLine2="~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="493"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="491"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="   mdsSubscriptionMap.remove(connectedSerial);"
+        errorLine2="~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="700"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="699"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="Suspicious indentation: This is indented but is not continuing the previous expression (`writer = new PrintWr`...)"
+        errorLine1="         Log.e(TAG,String.format(&quot;Create output stream %s&quot;,textUri.getPath()));"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="741"
+            column="10"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="740"
+            column="4"
+            message="Previous statement here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="     setContentView(R.layout.settings);"
+        errorLine2="  ~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/SettingsPage.java"
+            line="69"
+            column="3"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/SettingsPage.java"
+            line="68"
+            column="3"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="     ain.setDropDownViewResource(R.layout.spinner_item);"
+        errorLine2="~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/SettingsPage.java"
+            line="120"
+            column="1"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/SettingsPage.java"
+            line="119"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="     setContentView(R.layout.terms);"
+        errorLine2="  ~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/TermsOfUse.java"
+            line="22"
+            column="3"/>
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/TermsOfUse.java"
+            line="21"
+            column="3"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="WrongConstant"
+        message="Must be one or more of: Context.RECEIVER_VISIBLE_TO_INSTANT_APPS, Context.RECEIVER_EXPORTED, Context.RECEIVER_NOT_EXPORTED"
+        errorLine1="      context.registerReceiver(runnableReceiver, intentFilter, ContextCompat.RECEIVER_EXPORTED);"
+        errorLine2="                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="209"
+            column="64"/>
+    </issue>
+
+    <issue
+        id="BatteryLife"
+        message="Use of `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` violates the Play Store Content Policy regarding acceptable use cases, as described in https://developer.android.com/training/monitoring-device-state/doze-standby.html"
+        errorLine1="     new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).setData(Uri.parse(&quot;package:&quot; + getPackageName()))"
+        errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="139"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="RedundantLabel"
+        message="Redundant label can be removed"
+        errorLine1="        android:label=&quot;@string/app_name&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="34"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RedundantLabel"
+        message="Redundant label can be removed"
+        errorLine1="                android:label=&quot;@string/app_name&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="47"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="UnspecifiedRegisterReceiverFlag"
+        message="`dataReceiver` \&#xA;is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected \&#xA;broadcasts registered for com.dippa2.movesenseLog.util.Constants.IMU, com.dippa2.movesenseLog.util.Constants.ECG, com.dippa2.movesenseLog.STOP_SERVICE, com.dippa2.movesenseLog.util.Constants.FOUND_DEVICE, com.dippa2.movesenseLog.util.Constants.STOP_SCAN, com.dippa2.movesenseLog.TOAST, com.dippa2.movesenseLog.util.Constants.HR, com.dippa2.movesenseLog.SETTINGSUPDATED"
+        errorLine1="       registerReceiver(dataReceiver, intentFilter);"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="259"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnspecifiedRegisterReceiverFlag"
+        message="`serviceReceiver` \&#xA;is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected \&#xA;broadcasts registered for an IntentFilter that cannot be inspected by lint"
+        errorLine1="       registerReceiver(serviceReceiver, intentFilter);"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="132"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnspecifiedRegisterReceiverFlag"
+        message="`runnableReceiver` \&#xA;is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected \&#xA;broadcasts registered for an IntentFilter that cannot be inspected by lint"
+        errorLine1="      context.registerReceiver(runnableReceiver, intentFilter);"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/SensorRunnable.java"
+            line="211"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="LockedOrientationActivity"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices"
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="49"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="LockedOrientationActivity"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices"
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="54"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="LockedOrientationActivity"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices"
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="60"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed."
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="49"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed."
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="54"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed."
+        errorLine1="                android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="60"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="    android:onClick=&quot;onScanClicked&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="71"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="    android:onClick=&quot;onBatteryClicked&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="80"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UsingOnClickInXml"
+        message="Use databinding or explicit wiring of click listener in code"
+        errorLine1="    android:onClick=&quot;shutdownListener&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="89"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="WakelockTimeout"
+        message="Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user&apos;s battery."
+        errorLine1="        wl.acquire(); //Start wake lock, wl.release(); needs to be called to shut this down..."
+        errorLine2="        ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/service/MoveSenseService.java"
+            line="365"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `match_parent` for better performance"
+        errorLine1="            android:layout_height=&quot;match_parent&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="100"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.integer.react_native_dev_server_port` appears to be unused">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.mLogButton` appears to be unused"
+        errorLine1="    &lt;string name=&quot;mLogButton&quot;>Start Logging&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="3"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.mShutdown` appears to be unused"
+        errorLine1="    &lt;string name=&quot;mShutdown&quot;>Shutdown&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.write_permission_required` appears to be unused"
+        errorLine1=" &lt;string name=&quot;write_permission_required&quot;>&quot;App requires file write permission&quot;&lt;/string>  "
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.location_permission_required` appears to be unused"
+        errorLine1=" &lt;string name=&quot;location_permission_required&quot;>&quot;App requires location permission for Bluetooth discovery&quot;&lt;/string>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="7"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.disable_battery_optimisation` appears to be unused"
+        errorLine1=" &lt;string name=&quot;disable_battery_optimisation&quot;>&quot;Disable battery optimisations for this app&quot;&lt;/string>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `LinearLayout` parent is unnecessary"
+        errorLine1="    &lt;RelativeLayout"
+        errorLine2="     ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/settings.xml"
+            line="11"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-ldpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `ic_close.png` icon has identical contents in the following configuration folders: drawable-ldpi, drawable">
+        <location
+            file="src/main/res/drawable/ic_close.png"/>
+        <location
+            file="src/main/res/drawable-ldpi/ic_close.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `ic_launcher.png` icon has identical contents in the following configuration folders: drawable-ldpi, drawable">
+        <location
+            file="src/main/res/drawable/ic_launcher.png"/>
+        <location
+            file="src/main/res/drawable-ldpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_close.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_close.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_launcher.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconMissingDensityFolder"
+        message="Missing density variation folders in `src\main\res`: drawable-xxhdpi">
+        <location
+            file="src/main/res"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="   &lt;Button"
+        errorLine2="    ~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="67"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="   &lt;Button"
+        errorLine2="    ~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="76"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="   &lt;Button"
+        errorLine2="    ~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="85"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="    ((Button) findViewById(R.id.buttonScan)).setText(&quot;Scan&quot;);"
+        errorLine2="                                                     ~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="338"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="      ecgSRText.setText(&quot;ECG SR &quot;+ecgSR);"
+        errorLine2="                        ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="364"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="      ecgSRText.setText(&quot;ECG SR &quot;+ecgSR);"
+        errorLine2="                        ~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="364"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="      imuSRText.setText(&quot;IMU SR &quot;+imuSR);"
+        errorLine2="                        ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="365"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="      imuSRText.setText(&quot;IMU SR &quot;+imuSR);"
+        errorLine2="                        ~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="365"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="   hrText.setText(&quot;HR &quot;+hrToggle);"
+        errorLine2="                  ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="366"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="   hrText.setText(&quot;HR &quot;+hrToggle);"
+        errorLine2="                  ~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="366"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="   ((Button) findViewById(R.id.buttonScan)).setText(&quot;Stop Scanning&quot;);"
+        errorLine2="                                                    ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dippa2/movesenseLog/MoveSenseLog.java"
+            line="400"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;NA&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;NA&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="30"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;NA&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;NA&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="39"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;NA&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;NA&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="47"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;HR BMP&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;HR BMP&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="55"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Scan&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Scan&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="73"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Battery&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Battery&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="82"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Shutdown&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Shutdown&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="91"
+            column="5"/>
+    </issue>
+
+</issues>
