@@ -82,6 +82,7 @@ public class SensorRunnable implements Runnable{
 	Context context;
 	String serial = "";
 	String macAddress;
+	String sensorName; // added to include sensorname for broadcasting
 	IntentFilter intentFilter;
 	String date = null;	//Used in log file name
 	TimeZone tz = null;
@@ -132,9 +133,10 @@ public class SensorRunnable implements Runnable{
 	Handler handler;
 	
 	
-	public SensorRunnable(Context context, String macAddress, Locale locale, TimeZone tz, String date, String ecgSR,String imuSR, String hrToggle, int accView){
+	public SensorRunnable(Context context, String macAddress, String sensorName, Locale locale, TimeZone tz, String date, String ecgSR,String imuSR, String hrToggle, int accView){
 		this.context = context;
 		this.macAddress = macAddress;
+		this.sensorName = sensorName;
 		this.locale = locale;
 		this.tz = tz;
 		this.date = date;
@@ -557,6 +559,7 @@ public class SensorRunnable implements Runnable{
 							.putExtra(Constants.UPDATE_GRAPH_MAG_Z,Arrays.copyOf(rawData[8],rawData[8].length))
 							.putExtra(Constants.ACCVIEW,accView)
 							.putExtra(Constants.BATTERY,batteryMap.get(connectedSerial))
+							.putExtra(Constants.SENSOR_NAME, sensorName)
 						);
 						
 						//Write data to file (Fire up a new thread for the write?

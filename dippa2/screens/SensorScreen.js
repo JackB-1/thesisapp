@@ -8,6 +8,7 @@ const SensorScreen = () => {
   const [mockData, setMockData] = useState([]);
   const [imuData, setImuData] = useState([]);
   const [genericData, setGenericData] = useState([]);
+  const [sensorList, setSensorList] = useState([]);
 
   const { ReactNativeBridge } = NativeModules;
 
@@ -35,11 +36,15 @@ const SensorScreen = () => {
     } else if (type === 'GenericEvent') {
       setGenericData((currentData) => [...currentData, data]); // Handle GenericEvent
     } else {
-        console.log('SensorScreen: Unknown event type:', type);
+      console.log('SensorScreen: Unknown event type:', type);
     }
   }, []);
 
-  useSensorData(handleNewData);
+  const handleSensorsUpdated = useCallback((sensorNames) => {
+    setSensorList(JSON.parse(sensorNames).sensorNames);
+  }, []);
+
+  useSensorData(handleNewData, handleSensorsUpdated);
 
   const openMoveSenseLog = () => {
     ReactNativeBridge.startMoveSenseLog();
@@ -47,6 +52,12 @@ const SensorScreen = () => {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Sensors List:</Text>
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }} style={{ width: '100%', height: '20%' }}>
+        {sensorList.map((name, index) => (
+          <Text key={`sensor-${index}`}>{name}</Text>
+        ))}
+      </ScrollView>
       <Text>Mock Data:</Text>
       <ScrollView style={{ width: '100%', height: '20%' }}>
         {mockData.map((data, index) => (

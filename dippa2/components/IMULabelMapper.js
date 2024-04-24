@@ -3,8 +3,9 @@ const mapNumberToLabel = (numberString) => {
     const index = parseInt(numberString, 10);
     if (index >= 0 && index < labels.length) {
         return labels[index];
+    } else {
+        return `Unlabeled output: ${numberString}`;
     }
-    throw new Error(`Invalid numberString: ${numberString}`);
 };
 
 export default mapNumberToLabel;

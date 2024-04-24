@@ -305,7 +305,7 @@ public class MoveSenseService extends Service{
 		
 		//Start SensorRunnable here, feed in mac address, serial etc
 		threadMap.put(device.macAddress,
-					new Thread(new SensorRunnable(this, bleDevice.getMacAddress(), defaultLocale, tz, date, ecgSR,imuSR,hrToggle, threadMap.size()))
+					new Thread(new SensorRunnable(this, bleDevice.getMacAddress(), bleDevice.getName(), defaultLocale, tz, date, ecgSR,imuSR,hrToggle, threadMap.size()))
 				);
 		threadMap.get(device.macAddress).start();
     }

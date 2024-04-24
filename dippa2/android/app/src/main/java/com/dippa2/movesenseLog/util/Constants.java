@@ -12,6 +12,7 @@ public final class Constants{
 	public static final String BATTERY = "com.dippa2.movesenseLog.BATTERY";
 	public static final String ACCVIEW = "com.dippa2.movesenseLog.ACCVIEW";
 	public static final String SETTINGSUPDATED = "com.dippa2.movesenseLog.SETTINGSUPDATED";
+	public static final String SENSOR_NAME = "com.dippa2.movesenseLog.SENSOR_NAME"; // added to include sensorname for broadcasting
 	
 	public static final int SETTINGSPAGEINTENT = 242;	//Used to launch settings
 	

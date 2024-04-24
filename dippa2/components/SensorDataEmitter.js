@@ -15,7 +15,7 @@ const useMockDataEmitter = () => {
     }, []);
 };
 
-const useSensorData = (onNewData) => {
+const useSensorData = (onNewData, onSensorsUpdated) => {
     useMockDataEmitter(); // Ensure the mock data emitter starts when this hook is used
 
     const eventEmitterRef = useRef(new NativeEventEmitter(ReactNativeBridge));
@@ -38,13 +38,19 @@ const useSensorData = (onNewData) => {
             onNewData(data, 'GenericEvent');
         });
 
+        const sensorsUpdatedListener = eventEmitter.addListener('sensorsUpdated', (sensorNames) => {
+            console.log('sensorsUpdated event received:', sensorNames);
+            onSensorsUpdated(sensorNames);
+        });
+
         return () => {
             console.log('useSensorData: Removing listener');
             mockDataListener.remove();
             imuDataListener.remove();
             genericDataListener.remove();
+            sensorsUpdatedListener.remove();
         };
-    }, [onNewData]);
+    }, [onNewData, onSensorsUpdated]);
 };
 
 export default useSensorData;
