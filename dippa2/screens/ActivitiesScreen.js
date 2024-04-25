@@ -1,46 +1,90 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native'; // Import View and Text from react-native
+import { View, Text, Dimensions } from 'react-native';
 import { Agenda } from 'react-native-calendars';
+import { loadDataForDateRange } from '../components/DataStorage';
+import { BarChart } from 'react-native-chart-kit';
 
 const ActivitiesScreen = () => {
   const [items, setItems] = useState({});
+  const [selectedDay, setSelectedDay] = useState('2024-04-16');
+  const [dayData, setDayData] = useState([]);
 
-  const loadItems = (day) => {
-    setTimeout(() => {
-      const newItems = { ...items }; // Create a shallow copy of items to modify
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = new Date(time).toISOString().split('T')[0];
-        if (!newItems[strTime]) {
-          newItems[strTime] = [];
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-            newItems[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            });
-          }
-        }
-      }
-      setItems(newItems); // Update the state with the modified copy
-    }, 1000);
+  const colorMapping = {
+    0: '#B34D4D', 1: '#FFB399', 2: '#FF33FF', 3: '#FFFF99', 4: '#00B3E6', 
+    5: '#E6B333', 6: '#3366E6', 7: '#999966', 8: '#99FF99', 9: '#FF6633',
+    10: '#80B300', 11: '#809900', 12: '#E6B3B3'
   };
 
-  const renderItem = (item) => {
+  const loadItems = async (day) => {
+    const startDate = new Date(day.year, day.month - 1, 1).getTime();
+    const endDate = new Date(day.year, day.month, 0).getTime();
+    const data = await loadDataForDateRange(startDate, endDate);
+
+    const newItems = {};
+    data.forEach((item) => {
+      const strTime = new Date(item.timestamp).toISOString().split('T')[0];
+      if (!newItems[strTime]) {
+        newItems[strTime] = [];
+      }
+      newItems[strTime].push({
+        name: new Date(item.timestamp).toLocaleTimeString('fi-FI', {
+          hour: '2-digit', minute: '2-digit', second: '2-digit'
+        }),
+        modelOutput: item.modelOutput
+      });
+    });
+
+    setItems(newItems);
+  };
+
+  const chartConfig = {
+    backgroundGradientFrom: "#fff",
+    backgroundGradientTo: "#fff",
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    barPercentage: 0.5,
+  };
+
+  const renderChart = () => {
+    if (dayData.length === 0) {
+      return <Text>No data for this day.</Text>;
+    }
+
+    const chartData = {
+      labels: dayData.map(item => item.name),
+      datasets: [{
+        data: dayData.map(item => item.modelOutput),
+        colors: dayData.map(item => (opacity = 1) => colorMapping[parseInt(item.modelOutput)])
+      }]
+    };
+
     return (
-      <View style={{ marginRight: 10, marginTop: 17 }}>
-        <Text>{item.name}</Text>
-      </View>
+      <BarChart
+        data={chartData}
+        width={Dimensions.get('window').width - 20}
+        height={220}
+        yAxisLabel=""
+        chartConfig={chartConfig}
+        verticalLabelRotation={30}
+        fromZero
+      />
     );
   };
 
   return (
-    <Agenda
-      items={items}
-      loadItemsForMonth={loadItems}
-      selected={'2023-05-16'}
-      renderItem={renderItem}
-    />
+    <View style={{ flex: 1 }}>
+      <Agenda
+        items={items}
+        loadItemsForMonth={loadItems}
+        selected={selectedDay}
+        onDayPress={(day) => {
+          setSelectedDay(day.dateString);
+          setDayData(items[day.dateString] || []);
+        }}
+        renderItem={({ item }) => <View />}
+      />
+      {renderChart()}
+    </View>
   );
 };
 

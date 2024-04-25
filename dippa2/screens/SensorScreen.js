@@ -25,23 +25,23 @@ const SensorScreen = () => {
     requestPermissions();
   }, []);
 
-
   const handleNewData = useCallback((data, type) => {
-    // console.log(`SensorScreen: New ${type} Data received:`, data);
     if (type === 'MockDataEvent') {
       setMockData((currentData) => [...currentData, data]);
     } else if (type === 'IMUDataEvent') {
       const label = mapNumberToLabel(data);
       setImuData((currentData) => [...currentData, label]);
     } else if (type === 'GenericEvent') {
-      setGenericData((currentData) => [...currentData, data]); // Handle GenericEvent
+      setGenericData((currentData) => [...currentData, data]);
     } else {
       console.log('SensorScreen: Unknown event type:', type);
     }
   }, []);
 
-  const handleSensorsUpdated = useCallback((sensorNames) => {
-    setSensorList(JSON.parse(sensorNames).sensorNames);
+  const handleSensorsUpdated = useCallback((sensorNames) => { 
+    const parsedSensorNames = JSON.parse(sensorNames).sensorNames
+    console.log("parsedSensorNames:", parsedSensorNames)
+    setSensorList(parsedSensorNames);
   }, []);
 
   useSensorData(handleNewData, handleSensorsUpdated);

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { NativeEventEmitter, NativeModules } from 'react-native';
+import { saveData } from './DataStorage';
 
 const { ReactNativeBridge } = NativeModules;
 
@@ -30,12 +31,9 @@ const useSensorData = (onNewData, onSensorsUpdated) => {
 
         const imuDataListener = eventEmitter.addListener('IMUDataEvent', (imuData) => {
             console.log('IMUDataEvent received in useSensorData:', imuData);
-            onNewData(imuData, 'IMUDataEvent');
-        });
-
-        const genericDataListener = eventEmitter.addListener('GenericEvent', (data) => {
-            console.log('GenericEvent received in useSensorData:', data);
-            onNewData(data, 'GenericEvent');
+            const parsedData = JSON.parse(imuData);
+            saveData(parsedData); // Save the parsed data to AsyncStorage
+            onNewData(parsedData, 'IMUDataEvent');
         });
 
         const sensorsUpdatedListener = eventEmitter.addListener('sensorsUpdated', (sensorNames) => {
@@ -47,49 +45,9 @@ const useSensorData = (onNewData, onSensorsUpdated) => {
             console.log('useSensorData: Removing listener');
             mockDataListener.remove();
             imuDataListener.remove();
-            genericDataListener.remove();
             sensorsUpdatedListener.remove();
         };
     }, [onNewData, onSensorsUpdated]);
 };
 
 export default useSensorData;
-
-
-/* const useSensorData = (onNewData) => {
-    useEffect(() => {
-        console.log('useIMUData useEffect called');
-        if (ReactNativeBridge) {
-            console.log('ReactNativeBridge is available');
-            console.log('ReactNativeBridge methods:', Object.keys(ReactNativeBridge));
-            const eventEmitter = new NativeEventEmitter(ReactNativeBridge);
-            console.log('NativeEventEmitter created');
-            const imuDataListener = eventEmitter.addListener('IMUDataEvent', (imuData) => {
-                console.log('IMUDataEvent received:', imuData);
-                if (onNewData) {
-                    onNewData(imuData);
-                }
-            });
-
-            const genericDataListener = eventEmitter.addListener('GenericEvent', (genericData) => {
-                console.log('GenericEvent received:', genericData);
-                if (onNewData) {
-                    onNewData(genericData);
-                }
-            });
-
-            return () => {
-                console.log('Removing IMUDataEvent listener');
-                imuDataListener.remove();
-                console.log('Removing GenericEvent listener'); // Add this line
-                genericDataListener.remove(); // And this line
-            };
-        } else {
-            console.log('ReactNativeBridge is not available');
-        }
-    }, [onNewData]);
-}; 
-
-export default useSensorData;
-
-*/

@@ -120,21 +120,16 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
                             }
                         }
                     }
-                    /* sensorDataMap.forEach { (key, value) ->
-                        combinedData.put(key, value)
-                    }
-                    val test = sensorDataMap[sensorName]
-                    Log.e("ReactNativeBridge", "test: $test")
-                    Log.e("ReactNativeBridge", "combinedData: $combinedData")
-                    // log type of combinedData
-                    Log.e("ReactNativeBridge", "combinedData type: ${combinedData?.javaClass?.name ?: "null"}")
-                    Log.e("ReactNativeBridge", "test type: ${test?.javaClass?.name ?: "null"}") */
                     try {
                         val modelInput = combinedData.toString()
                         Log.e("ReactNativeBridge", "modelInput: $modelInput")
+                        val timestamp = combinedData.getJSONArray("timestamp").getLong(0)
                         val modelOutput = summingModel.predict(modelInput)
-                        val modelOutputString = modelOutput.toString()
-                        emitSensorDataToReactNative(modelOutputString, "IMUDataEvent")
+                        val outputJson = JSONObject().apply {
+                            put("timestamp", timestamp)
+                            put("modelOutput", modelOutput)
+                        }
+                        emitSensorDataToReactNative(outputJson.toString(), "IMUDataEvent")
                     } catch (e: Exception) {
                         Log.e("ReactNativeBridge", "Error in model prediction", e)
                     }
@@ -204,25 +199,8 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
         } else {
             Log.d("ReactNativeBridge", "Complete sensor data: ${json.toString()}")
         }
-        // return json.toString()
         return json
     }
-    
-    /* private fun compileExtrasIntoString(intent: Intent?): String {
-        val dataBuilder = StringBuilder()
-        dataBuilder.append("Action: ${intent?.action ?: "Unknown"}")
-        
-        // Iterate through all extras in the intent
-        intent?.extras?.let { bundle ->
-            for (key in bundle.keySet()) {
-                val value = bundle.get(key)
-                dataBuilder.append(", $key: $value")
-            }
-        }
-        
-        // Convert StringBuilder content to String
-        return dataBuilder.toString()
-    } */
 
     private fun emitSensorDataToReactNative(sensorData: String?, eventName: String) {
         sensorData?.let {
