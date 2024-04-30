@@ -216,13 +216,6 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
         return "ReactNativeBridge"
     }
 
-    /* // Make sure to unregister the receiver when the module is destroyed
-    override fun onCatalystInstanceDestroy() {
-        Log.e("ReactNativeBridge", "onCatalystInstanceDestroy called")
-        reactContext.unregisterReceiver(sensorDataReceiver)
-        super.onCatalystInstanceDestroy()
-    } */
-
     @ReactMethod
     fun startMoveSenseLog() {
         Log.e("ReactNativeBridge", "Starting MoveSenseLog")
@@ -245,50 +238,3 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
         Log.d("ReactNativeBridge", "removeListeners called for: $eventName")
     }
 }
-
-/* 
-
-private val sensorDataReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val sensorName = intent?.getStringExtra(Constants.SENSOR_NAME)
-            if (sensorName != null) {
-                if (sensorNames.add(sensorName)) {
-                    // If new sensor name is added, reset all counters to 0
-                    receiveCounters.keys.forEach { key ->
-                        receiveCounters[key] = 0
-                    }
-                    // Emit the updated list
-                    emitSensorDataToReactNative(JSONObject().put("sensorNames", JSONArray(sensorNames)).toString(), "sensorsUpdated")
-                }
-                // Initialize the counter for the sensor if it doesn't exist
-                val counter = receiveCounters.getOrDefault(sensorName, 0)
-                receiveCounters[sensorName] = counter + 1
-    
-                // Check if the counter is exactly 26 to handle the 26th broadcast
-                if (counter == 26) {
-                    val action = intent?.action ?: "Unknown"
-                    Log.e("ReactNativeBridge", "onReceive: action = $action, sensor = $sensorName")
-                    intent?.extras?.let { bundle ->
-                        val jsonData = when (action) {
-                            Constants.IMU -> {
-                                convertIMUDataToJson(intent)
-                            }
-                            else -> {
-                                compileExtrasIntoString(intent)
-                            }
-                        }
-                        try {
-                            val modelOutput = summingModel.predict(jsonData)
-                            val modelOutputString = modelOutput.toString()
-                            emitSensorDataToReactNative(modelOutputString, if (action in listOf(Constants.IMU)) "IMUDataEvent" else "GenericEvent")
-                        } catch (e: Exception) {
-                            Log.e("ReactNativeBridge", "Error calling predict method of SummingModelClass", e)
-                        }
-                    }
-                    // Reset the counter for the sensor after handling the 26th broadcast
-                    receiveCounters[sensorName] = 0
-                }
-            }
-        }
-    }
- */

@@ -51,9 +51,13 @@ const SensorScreen = () => {
     <View style={styles.container}>
       <Text style={styles.topHeader}>Sensors connected</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        {sensorList.map((name, index) => (
-          <Text key={`sensor-${index}`} style={styles.sensorText}>{name}</Text>
-        ))}
+        {sensorList.length > 0 ? (
+          sensorList.map((name, index) => (
+            <Text key={`sensor-${index}`} style={styles.sensorText}>{name}</Text>
+          ))
+        ) : (
+          <Text style={styles.sensorText}>None</Text>
+        )}
       </ScrollView>
       <Text style={styles.header}>Activity data</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>

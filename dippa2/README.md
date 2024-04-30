@@ -1,17 +1,29 @@
-# Project ToDo:s
+# Mobile Application Overview
 
-- få ML model och runna korrekt --- DONE ---
-- ta ML model output i react native och sätt in i kalender. 
-	- skapa en kalender med månadsformat som det är, men dagsformat är en "graf" som i FirstBeat appen.
-		- en datapunkt är 2 sec, var datapunkten motsvarar en färg, finns lika många färger som labels.
-- data sparas som "timestamp" : label, t.ex. 1713896010736:2, 1713896011736:4, 1713896012736:2 (också möjlighet spara det enligt isoformat, om det är bättre)
-	- sparas i appdata på lokala telefon
-	- blir läst in i ActivitiesScreen
-- fixa lite finare UI, bara med prompts till Cursor, kan googla/youtube "Top UI:s React Native"
-- Göra en undersökning med mamma&pappa och resten äkta/fejk
-- skriva arbetet, sikta på 60 sidor?
+## Introduction
+This mobile application provides a user-friendly interface for connecting to Movesense sensors and visualizing activity data in real-time. It is designed primarily for Android devices, with iOS compatibility not currently supported.
 
-add ons:
-- få "scan sensors", "connect to sensors" funktionalitet till React Native istället för natively. 
-	- ingen live data behövs
-	- sensorerna som connectats till sparas i en lsita som visas "Connected sensors"
+## Features
+- **Sensor Connection**: Users can connect to Movesense sensors. The application displays a list of all connected sensors.
+- **Live Activity Data Feed**: The application processes raw IMU data from the connected sensors through a machine learning model and displays labeled activity data in real-time.
+- **Activities Interface**: Features a calendar view where users can select a date to visualize activity data. Below the calendar, the activity data is presented graphically, similar to a graph format.
+
+## Architecture
+The application is built using React Native, allowing for a cross-platform mobile app development:
+- **React Native App**: Handles most of the user interfaces for displaying sensor data and activities. Also takes care of saving and loading labeled activity data on the device local storage.
+- **Android Native Code**:
+  - `movesenseLog`: Manages Bluetooth connections to the sensors.
+  - `MainActivity.kt`: Serves as the entry point of the Android application.
+  - `ReactNativeBridge.kt`: Main module that bridges React Native with native Android functionalities. This module also is responsible for receiving sensor data from the movesenseLog, processing it, running the data through the MLModule and sending it to the React Native app.
+  - `MLModule`: Interacts with the machine learning model located under `src/main/assets` to process the sensor data.
+
+## Running the Application Locally
+To run the application on your own computer, follow these steps:
+1. Ensure you have all the necessary requirements installed to run a React Native application, including Node.js and Android Studio.
+2. Clone the repository to your local machine.
+3. Open a terminal and change directory (cd) to the root folder of the project.
+4. Run `npm install` to install all dependencies.
+5. Execute `npx react-native run-android` to start the application on an Android device or emulator.
+
+## Note
+This application is currently optimized for Android devices, and there is no support for iOS devices at this stage.
