@@ -106,7 +106,6 @@ const ActivitiesScreen = () => {
           width={400}
           label="Time"
           labelStyle={{ fontSize: 24 }}
-          offsetX={25}
         />
         {/* <VictoryAxis
           dependentAxis

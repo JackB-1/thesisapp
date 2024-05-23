@@ -88,7 +88,7 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
                     val combinedData = JSONObject()
                     // Iterate over each sensor's data in sensorDataMap
                     for ((_, value) in sensorDataMap) {
-                        // Assuming 'value' is a JSONObject containing the sensor data like {"timestamp": ..., "acc_x": ...}
+                        // Assuming 'value' is a JSONObject containing the sensor data like {"timestap": ..., "acc_x": ...}
                         // Merge this sensor's data into combinedData
                         value.keys().forEach { key ->
                             if (combinedData.has(key)) {
