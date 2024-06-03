@@ -16,10 +16,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import com.dippa2.movesenseLog.util.Constants
 
-// mockdata imports
-import java.util.Timer
-import kotlin.concurrent.timerTask
-import java.util.Date
+// for emitting sensorNames list periodically
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 import SummingModelClass
 
@@ -27,29 +26,13 @@ import androidx.core.content.ContextCompat
 
 class ReactNativeBridge(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private var mockDataTimer: Timer? = null
     private lateinit var summingModel: SummingModelClass
     private val sensorNames = mutableSetOf<String>()
     private val receiveCounters = mutableMapOf<String, Int>()
     private val sensorDataMap = mutableMapOf<String, JSONObject>()
+    private val lastUpdateTime = mutableMapOf<String, Long>()
 
-    @ReactMethod
-    fun startMockDataEmitter() {
-        // Log.e("ReactNativeBridge", "startMockDataEmitter called")
-        mockDataTimer = Timer()
-        mockDataTimer?.scheduleAtFixedRate(timerTask {
-        val mockData = "MOCKDATA ${Date().time.toString()}"
-        // Log.e("ReactNativeBridge", "Emitting mock data: $mockData")
-        emitSensorDataToReactNative(mockData, "MockDataEvent")
-        }, 0, 1000) // 0 delay, 1 second period
-    }
-
-    @ReactMethod
-    fun stopMockDataEmitter() {
-        Log.e("ReactNativeBridge", "stopMockDataEmitter called")
-        mockDataTimer?.cancel()
-        mockDataTimer = null
-    }
+    private val scheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
 
 
     // every 26th broadcast is used below because with 52 hertz on IMU, the IMU data arrays are 104 length.
@@ -66,7 +49,7 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
             if (sensorName != null) {
                 if (sensorNames.add(sensorName)) {
                     // Reset all counters and clear previous data when a new sensor is added
-                    emitSensorDataToReactNative(JSONObject().put("sensorNames", JSONArray(sensorNames)).toString(), "sensorsUpdated")
+                    // emitSensorDataToReactNative(JSONObject().put("sensorNames", JSONArray(sensorNames)).toString(), "sensorsUpdated")
                     receiveCounters.clear()
                     sensorDataMap.clear()
                 }
@@ -81,6 +64,7 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
                         else -> JSONObject()
                     }
                     sensorDataMap[sensorName] = jsonData
+                    lastUpdateTime[sensorName] = System.currentTimeMillis()
                 }
 
                 // Check if all sensors have reached or exceeded the 26th broadcast
@@ -162,6 +146,22 @@ class ReactNativeBridge(private val reactContext: ReactApplicationContext) : Rea
         } catch (e: Exception) {
             Log.e("ReactNativeBridge", "Error instantiating SummingModelClass", e)
         }
+
+        val timeout = 30000 // 8 seconds, if sensor has not broadcasted for this long, it is considered inactive
+        scheduledExecutorService.scheduleAtFixedRate({
+            try {
+                val currentTime = System.currentTimeMillis()
+                val inactiveSensors = lastUpdateTime.filter {
+                    (currentTime - it.value) > timeout
+                }.keys
+                // Remove inactive sensors
+                sensorNames.removeAll(inactiveSensors)
+                lastUpdateTime.keys.removeAll(inactiveSensors)
+                emitSensorDataToReactNative(JSONObject().put("sensorNames", JSONArray(sensorNames)).toString(), "sensorsUpdated")
+            } catch (e: Exception) {
+                Log.e("ReactNativeBridge", "Error emitting sensor names", e)
+            }
+        }, 0, 10, TimeUnit.SECONDS)
     }
 
     private fun convertIMUDataToJson(intent: Intent?): JSONObject { // String instead of JSONObject

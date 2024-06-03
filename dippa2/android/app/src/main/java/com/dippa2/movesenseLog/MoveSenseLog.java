@@ -105,8 +105,10 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 	
     
 	//Could make these into Arrays or hashmap -> add when needed
-	private GraphicsSurfaceRawView[] graphicsViewAcc = null;
-	private GraphicsSurfaceRawView graphicsViewECG;
+	// Deactivated graphicsView to improve performance of activity app
+	/* private GraphicsSurfaceRawView[] graphicsViewAcc = null; */
+	// Deactivated graphicsView to improve performance of activity app
+	/* private GraphicsSurfaceRawView graphicsViewECG; */
 
 	
     @Override
@@ -140,7 +142,8 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 				 ,Constants.REQUEST_DISABLE_BATTERY);
 		 }
 		
-		graphicsViewAcc = new GraphicsSurfaceRawView[3];
+		// Deactivated graphicsView to improve performance of activity app
+		/* graphicsViewAcc = new GraphicsSurfaceRawView[3];
 		
 		graphicsViewAcc[0] =  new GraphicsSurfaceRawView(this);
 		((LinearLayout) findViewById(R.id.accLayout1)).addView(graphicsViewAcc[0]);
@@ -150,7 +153,7 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 		((LinearLayout) findViewById(R.id.accLayout3)).addView(graphicsViewAcc[2]);
 
 		graphicsViewECG =  new GraphicsSurfaceRawView(this);
-		((LinearLayout) findViewById(R.id.ecgLayout)).addView(graphicsViewECG);
+		((LinearLayout) findViewById(R.id.ecgLayout)).addView(graphicsViewECG); */
 
         // Init Scan UI
         mScanResultListView = (ListView)findViewById(R.id.listScanResult);
@@ -289,8 +292,10 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 				String toastText = intent.getStringExtra(Constants.TOAST);
 				Toast.makeText(context, toastText,Toast.LENGTH_SHORT).show();
 			}
+
+			// Deactivated graphicsView to improve performance of activity app
 			//Update IMU
-			if (intent.getAction().equals(Constants.IMU)){
+/* 			if (intent.getAction().equals(Constants.IMU)){
 				float[][] rawData = new float[3][];
 				float[][] gyrData = new float[3][];
 				float[][] magData = new float[3][];
@@ -303,6 +308,7 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 				magData[0] = intent.getFloatArrayExtra(Constants.UPDATE_GRAPH_MAG_X);
 				magData[1] = intent.getFloatArrayExtra(Constants.UPDATE_GRAPH_MAG_Y); 
 				magData[2] = intent.getFloatArrayExtra(Constants.UPDATE_GRAPH_MAG_Z); 
+
 				int accView = intent.getIntExtra(Constants.ACCVIEW,0);
 				if (accView < graphicsViewAcc.length && graphicsViewAcc[accView].surfaceCreated){  
 					graphicsViewAcc[accView].updateData(rawData,Constants.normalisation[0],"Acc [m/s2] "+intent.getStringExtra(Constants.BATTERY));
@@ -323,7 +329,7 @@ public class MoveSenseLog extends AppCompatActivity implements AdapterView.OnIte
 				if (accView < 1 && graphicsViewECG.surfaceCreated){  
 					graphicsViewECG.updateData(rawData,Constants.normalisation[1],"ECG [V]");
 				}
-			}
+			} */
 
 			//Update HR
 			if (intent.getAction().equals(Constants.HR)){
