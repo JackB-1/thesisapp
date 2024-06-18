@@ -4,6 +4,9 @@
 This mobile application is developed as part of a master's thesis titled "Design and development of an interactive mobile application for wearable sensor data collection and visualization: A user-centric approach. The mobile application provides a user-friendly interface for connecting to Movesense sensors and visualizing activity data in real-time. It is designed primarily for Android devices, with iOS compatibility not currently supported.
 Users can interact with the app to connect to Movesense sensors, which collect IMU6 data (3D acceleration and 3D gyroscope measurements), which further is processed through a machine learning (ML) model to enhance data interpretation. The processed data is visualized in real-time, offering immediate insights into the user's physical activities. The activity predicted by the ML model is then saved to the mobile phone's local storage. There is an "Activities" tab where all activities for a selected date is visualized, visualization is achieved through a graph.
 
+<img src="images/Sensor4.jpg" alt="Screenshot of Application"  height="600">
+<img src="images/Activities2.jpg" alt="Screenshot of Application" height="600">
+
 ## Features
 - **Sensor Connection**: Users can connect to Movesense sensors. The application displays a list of all connected sensors.
 - **Live Activity Data Feed**: The application processes raw IMU data from the connected sensors through a machine learning model and displays labeled activity data in real-time.
